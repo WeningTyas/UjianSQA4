@@ -25,7 +25,12 @@ public class General {
     public static void maximize(WebDriver driver){
         driver.manage().window().maximize();
     }
-
+    public static void refresh(WebDriver driver){
+        driver.navigate().refresh();
+    }
+    public static void back(WebDriver driver){
+        driver.navigate().back();
+    }
 }
 
 

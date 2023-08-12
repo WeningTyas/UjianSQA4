@@ -21,5 +21,7 @@ public class OrderPage {
         browseProduct.click();
         System.out.println("Browse Product");
     }
-
+    /*
+    * Udah ga lewat sini lagi, karena transaksi lamanya ga bisa dihapus
+    * */
 }

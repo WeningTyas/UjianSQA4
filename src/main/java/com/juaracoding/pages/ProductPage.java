@@ -17,31 +17,31 @@ public class ProductPage {
     }
 
     @FindBy(xpath = "//select[@id='pa_color']")
-    WebElement selectColor;
+    WebElement listColor;
 
     @FindBy(xpath = "//select[@id='pa_size']")
-    WebElement selectSize;
+    WebElement listSize;
 
     @FindBy(xpath = "//button[normalize-space()='Add to cart']")
-    WebElement addToChart;
+    WebElement btnAddToChart;
 
     @FindBy(xpath = "//div[@role='alert']")
     WebElement pesan;
 
     public void selectColor(){
-        selectColor.click();
-        selectColor.sendKeys(Keys.ARROW_DOWN);
-        selectColor.sendKeys(Keys.ENTER);
+        listColor.click();
+        listColor.sendKeys(Keys.ARROW_DOWN);
+        listColor.sendKeys(Keys.ENTER);
         System.out.println("Pilih warna");
     }
     public void selectSize(){
-        selectSize.click();
-        selectSize.sendKeys(Keys.ARROW_DOWN);
-        selectSize.sendKeys(Keys.ENTER);
+        listSize.click();
+        listSize.sendKeys(Keys.ARROW_DOWN);
+        listSize.sendKeys(Keys.ENTER);
         System.out.println("Pilih ukuran");
     }
     public void addToChart(){
-        addToChart.click();
+        btnAddToChart.click();
         System.out.println("Klik Add to Cart");
     }
     public void verifikasi(){

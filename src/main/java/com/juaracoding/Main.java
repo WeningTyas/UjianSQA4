@@ -23,13 +23,16 @@ public class Main {
 
         addToChartTest(driver);
 
-        //Tambah produk
+        //Tambah produk, panggil pakai indexnya
         addProduct(driver, 2);
-        back(driver);
-        back(driver);
-        addProduct(driver, 4);
+        General.back(driver);
+        General.back(driver);
+        addProduct(driver, 3);
 
         //
+
+        //Checkout
+        checkoutTest(driver);
 
         General.delay(3);
         DriverSingleton.closeObjectInstance();
@@ -56,16 +59,23 @@ public class Main {
 
     public static void addToChartTest(WebDriver driver){
         General general = new General(driver);
-
         AccountPage akun = new AccountPage();
-        akun.orderClick();
+        CartPage shop = new CartPage();
 
+        general.scrollBy(0, -500);
+        akun.btnCartClick();
         general.scrollBy(0, 500);
 
-        OrderPage order = new OrderPage();
-        order.browseProductClick();
-
-        general.scrollBy(0, 500);
+        //cek keranjangnya, masih ada gak, klo ada, dihapus aja dulu
+        if (shop.listOrder() == 0) {
+            shop.btnReturnShopClick();
+            System.out.println("keranjang kosong");
+        } else {
+            shop.btnClearClick();
+            general.scrollBy(0, 500);
+            shop.btnReturnShopClick();
+            System.out.println("keranjang masih ada isi nih");
+        }
     }
 
     public static void addProduct(WebDriver driver, int index){
@@ -74,8 +84,9 @@ public class Main {
 
         shop.selectProduct(index);
 
+        //karena kadang ada produk yg perlu di scroll 2x ada yg 1x udh bisa
         try{
-            general.scrollBy(0, 500);
+            general.scrollBy(0, 600);
         } finally {
             general.scrollBy(0, 100);
         }
@@ -84,14 +95,28 @@ public class Main {
         produk.selectColor();
         produk.selectSize();
         produk.addToChart();
+        general.scrollBy(0, 100);
         produk.verifikasi();
     }
+    public static void checkoutTest(WebDriver driver){
+        General general = new General(driver);
+        CartPage cart = new CartPage();
+        CheckoutPage checkout = new CheckoutPage();
 
-    static void back(WebDriver driver){
-        driver.navigate().back();
-    }
-    static void refresh(WebDriver driver){
-        driver.navigate().refresh();
+        cart.btnChartClick();
+        try{
+            general.scrollBy(0, 800);
+        } finally {
+            general.scrollBy(0, 100);
+        }
+        cart.btnProceedClick();
+
+        checkout.billingDetail("Wening", "Tyas", "Indonesia",
+                 "Perum. Interkon", "Blok GB 2 No 11", "Jakarta Barat",
+                "DKI Jakarta", "11640", "081233213411");
+        checkout.btnOrderClick();
+        general.scrollBy(0, 100);
+        checkout.verifikasi();
     }
 
 }

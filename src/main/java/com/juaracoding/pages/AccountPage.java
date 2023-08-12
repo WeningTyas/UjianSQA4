@@ -17,8 +17,15 @@ public class AccountPage {
     @FindBy(xpath = "//a[normalize-space()='Orders']")
     WebElement orders;
 
-    public void orderClick(){
+    @FindBy(xpath = "//span[@class='cart-name-and-total']")
+    WebElement chart;
+
+    public void menuOrderClick(){
         orders.click();
         System.out.println("Klik menu Orders");
+    }
+    public void btnCartClick(){
+        chart.click();
+        System.out.println("Klik icon Chart");
     }
 }

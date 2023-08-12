@@ -17,9 +17,6 @@ public class ShopPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(className = "noo-product-inner")
-    WebElement clickProduct;
-
     @FindBy(xpath = "//div[@class='noo-product-inner']")
     List<WebElement> listProduct;
 
