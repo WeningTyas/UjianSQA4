@@ -19,5 +19,6 @@ public class AccountPage {
 
     public void orderClick(){
         orders.click();
+        System.out.println("Klik menu Orders");
     }
 }

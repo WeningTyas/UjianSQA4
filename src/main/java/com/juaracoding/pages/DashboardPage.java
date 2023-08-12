@@ -18,15 +18,14 @@ public class DashboardPage {
     @FindBy(xpath = "//a[normalize-space()='My Account']")
     WebElement btnMenuLogin;
 
-//    @FindBy(xpath = "//a[normalize-space()='My Wishlist']")
-//    WebElement btnMenuWishList;
-//
-//    @FindBy(xpath = "//a[normalize-space()='Checkout']")
-//    WebElement btnMenuCheckout;
+    @FindBy(xpath = "//a[normalize-space()='Checkout']")
+    WebElement btnMenuCheckout;
 
     public void menuClick(String menu){
         if (menu == "Login"){
             btnMenuLogin.click();
+        } else if (menu == "Checkout"){
+            btnMenuCheckout.click();
         } else {
             driver.navigate().refresh();
         }

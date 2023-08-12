@@ -20,12 +20,13 @@ public class ShopPage {
     @FindBy(className = "noo-product-inner")
     WebElement clickProduct;
 
-    public void selectProduct(){
-        int index = 2; //produk ke 3 di list produk
-        List<WebElement> listProduct = driver.findElements(By.xpath("//div[@class='noo-product-inner']"));
-        WebElement produk = listProduct.get(index);
-        produk.click();
-        System.out.println("Pilih pruduk");
+    @FindBy(xpath = "//div[@class='noo-product-inner']")
+    List<WebElement> listProduct;
+
+    public void selectProduct(int produk){
+        WebElement product = listProduct.get(produk);
+        product.click();
+        System.out.println("Pilih produk ke " + produk);
     }
 
 }

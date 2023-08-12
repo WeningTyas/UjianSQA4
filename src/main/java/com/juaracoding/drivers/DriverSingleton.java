@@ -36,11 +36,13 @@ public class DriverSingleton {
         instance = null;
         driver.quit();
     }
-    public static void delay(long sec){
-        try {
-            Thread.sleep(sec * 1000);
-        } catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
-    }
 }
+
+
+/*
+* Drivers:
+* Package ini dapat digunakan untuk menyimpan driver-browser yang digunakan oleh Selenium
+* untuk mengotomatisasi interaksi dengan situs web atau aplikasi. Setiap browser
+* (seperti Chrome, Firefox, atau Edge) memiliki driver sendiri yang diperlukan oleh
+* Selenium agar dapat mengontrolnya.
+* */

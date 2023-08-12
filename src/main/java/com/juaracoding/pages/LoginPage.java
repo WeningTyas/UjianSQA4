@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
     private WebDriver driver;
 
-    public LoginPage(){
+    public LoginPage() {
         this.driver = DriverSingleton.getDriver();
         PageFactory.initElements(driver, this);
     }
@@ -24,18 +24,32 @@ public class LoginPage {
     @FindBy(xpath = "//button[@name='login']")
     WebElement btnLogin;
 
-    public void login(){
-        username.sendKeys("weningputri3@gmail.com");
-        password.sendKeys("GunakanSandiKuat");
+    @FindBy(xpath = "//a[normalize-space()='Dashboard']")
+    WebElement menu;
+
+    public void login(String uname, String pwd) {
+        username.sendKeys(uname);
+        password.sendKeys(pwd);
         btnLogin.click();
         System.out.println("Masukkan Username & Password");
     }
+
     public void verifikasi(){
-        String menu = driver.findElement(By.xpath("//a[normalize-space()='Dashboard']")).getText();
-        if(menu.contains("Dashboard")){
+        String actual = menu.getText();
+        String expect = "Dashboard";
+        if(actual.contains(expect)){
             System.out.println("Login Oke!");
         } else {
             System.out.println("Login Failed");
         }
     }
+
 }
+
+
+/*
+* Expect (Harapkan) & Actual (Aktual/hasil)
+*
+* uname : "weningputri3@gmail.com"
+* pwd   : "GunakanSandiKuat"
+* */
