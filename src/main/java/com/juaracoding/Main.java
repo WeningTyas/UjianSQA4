@@ -29,8 +29,6 @@ public class Main {
         General.back(driver);
         addProduct(driver, 3);
 
-        //
-
         //Checkout
         checkoutTest(driver);
 
@@ -111,6 +109,9 @@ public class Main {
         }
         cart.btnProceedClick();
 
+        //negative test
+        testNegative();
+
         checkout.billingDetail("Wening", "Tyas", "Indonesia",
                  "Perum. Interkon", "Blok GB 2 No 11", "Jakarta Barat",
                 "DKI Jakarta", "11640", "081233213411");
@@ -119,4 +120,20 @@ public class Main {
         checkout.verifikasi();
     }
 
+    public static void testNegative(){
+        General general = new General(driver);
+        CheckoutPage checkout = new CheckoutPage();
+
+        checkout.clear();
+        general.delay(3);
+        general.scrollBy(0,400);
+
+        //negative test
+        checkout.btnOrderClick();
+        general.delay(5);
+        checkout.negative();
+
+        general.delay(3);
+        general.refresh(driver);
+    }
 }

@@ -43,6 +43,9 @@ public class CheckoutPage {
 
     @FindBy(xpath = "//p[@class='woocommerce-thankyou-order-received']")
     WebElement pesan;
+    @FindBy(xpath = "//li[contains(text(),'Please read and accept the terms and conditions to')]")
+    WebElement alert;
+
 
     public void billingDetail(String firstName, String lastName, String country,
                               String address, String detail, String city,
@@ -84,6 +87,7 @@ public class CheckoutPage {
             System.out.println("Gagal checkout");
         }
     }
+
     public void clear(){
         // bersihin teks inputnya dulu, nnti klo gak bisa dobel2
         txtFirstName.clear();
@@ -93,5 +97,17 @@ public class CheckoutPage {
         txtCity.clear();
         txtPostZip.clear();
         txtPhone.clear();
+    }
+
+    public void negative(){
+        String actual = alert.getText();
+        String expect = "Please read and accept the terms and conditions";
+
+        if(actual.contains(expect)){
+            System.out.println("Peringatan muncul");
+        } else {
+            System.out.println("Peringatan gagal");
+        }
+
     }
 }
