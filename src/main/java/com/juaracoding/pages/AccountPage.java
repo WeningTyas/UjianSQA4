@@ -20,6 +20,8 @@ public class AccountPage {
     @FindBy(xpath = "//span[@class='cart-name-and-total']")
     WebElement chart;
 
+    // awalnya pakai ini karena masih kosong akunnya
+    // tp skrng ga bisa, karena transaksi lamanya ga bisa dihapus
     public void menuOrderClick(){
         orders.click();
         System.out.println("Klik menu Orders");
